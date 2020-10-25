@@ -20,6 +20,7 @@ I've used Kholia's repository which utilised the newer OpenCore firmware method 
   * [Timezone](#Timezone)
   * [HDMI 2.0](#HDMI-20)
     - [Changing the framebuffer](#Changing-the-framebuffer)
+  * [Weird UI behaviour](#Weird-UI-behaviour)
 7. [Screenshots](#Screenshots)
 
 ## [Hardware](#hardware)
@@ -325,6 +326,10 @@ And then setting the ```enable-hdmi2``` device property.
 ```
 
 **Note** that neither of these options worked for me.
+
+### Weird UI behaviour
+
+I just booted into the VM and when opening item lists in in the IORegistryExplorer they would close automatically, I then went back to Linux to ssh into the machine and it locked up. Went back in and whole machine had locked up. Possibly a USB power issue caused by the Orinoco framebuffer?
 
 ## Screenshots
 
