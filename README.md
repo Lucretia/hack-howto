@@ -342,6 +342,10 @@ $ virsh --connect qemu:///system dompmwakeup --domain Catalina
 Domain Catalina successfully woken up
 ```
 
+### No USB redirect after wakeup
+
+Well, my VM suspended and I wanted to test passing through an iPhone via the QEM interface - not the USB PCI-e card, but the options were greyed out. So, reboot time and it's not the fastest boot with OC, once it gets to the picker, it's pretty fast.
+
 ## Screenshots
 
 ![Catalina Desktop](./screenshots/catalina/catalina-desktop.png)
