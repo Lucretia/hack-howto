@@ -301,4 +301,4 @@ And then setting the ```enable-hdmi2``` device property.
         </dict>
 ```
 
-Neither of these worked for me.
+**Note** that neither of these options worked for me.
