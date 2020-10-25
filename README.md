@@ -20,6 +20,7 @@ I've used Kholia's repository which utilised the newer OpenCore firmware method 
   * [Timezone](#Timezone)
   * [HDMI 2.0](#HDMI-20)
     - [Changing the framebuffer](#Changing-the-framebuffer)
+7. [Screenshots](#Screenshots)
 
 ## [Hardware](#hardware)
 
@@ -324,3 +325,7 @@ And then setting the ```enable-hdmi2``` device property.
 ```
 
 **Note** that neither of these options worked for me.
+
+## Screenshots
+
+![Catalina Desktop](./screenshots/catalina/catalina-desktop.png)
