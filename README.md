@@ -13,7 +13,7 @@ I've used Kholia's repository which utilised the newer OpenCore firmware method 
 6. [Storage](#Storage)
 7. [Add the physical hardware](#Add-the-physical-hardware)
 8. [Remove HDA audio](#Remove-HDA-audio)
-9. [Find your Ethernet MAC address] (#Find-your-Ethernet-MAC-address)
+9. [Find your Ethernet MAC address](#Find-your-Ethernet-MAC-address)
 10. [Modify the config.plist](#Modify-the-config.plist)
 11. [Issues](#Issues)
 
