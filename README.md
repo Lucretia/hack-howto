@@ -433,6 +433,10 @@ So, ```en0``` shoudl be now classed as built into the machine like on a Mac and 
 
 With this set up I was able to use iMessage, FaceTime and download Xcode from the App Store.
 
+### The awful keyboard shortcuts!!!
+
+The only thing now is to work out how to reconfigure the keyboard shortcuts so they don't mess with my muscle memory to much. I use Linux most of the time, I want to be able to use Home/End keys as they were designed for, I want to be able to move the cursor left and right a word at a time with Control! It's not too much to ask.
+
 ## Screenshots
 
 ![Catalina Desktop](./screenshots/catalina/catalina-desktop.png)
