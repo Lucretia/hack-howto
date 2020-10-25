@@ -5,7 +5,19 @@ This is my guide on how to set up a Hackintosh on Virt-Manager.
 
 I've used Kholia's repository which utilised the newer OpenCore firmware method over the old Clover method.
 
-## Hardware
+1. [Hardware](#hardware)
+2. [Download the required software](#Download-the-required-software)
+3. [Create the virtual machine](#Create-the-virtual-machine)
+4. [CPUs](#CPUs)
+5. [Memory](#Memory)
+6. [Storage](#Storage)
+7. [Add the physical hardware](#Add-the-physical-hardware)
+8. [Remove HDA audio](#Remove-HDA-audio)
+9. [Find your Ethernet MAC address] (#Find-your-Ethernet-MAC-address)
+10. [Modify the config.plist](#Modify-the-config.plist)
+11. [Issues](#Issues)
+
+## [Hardware](#hardware)
 
 My machine is quite old, but it still works.
 
@@ -53,11 +65,11 @@ If ProperTree complains about ```BACKGROUND``` do the following:
 $ xrdb -load /dev/null
 ```
 
-## Create the virtual machine in Virt-Manager
+## [Create the virtual machine](#create-vm)
 
 Import the Virt-Manager XML template as per the Kholia instructions.
 
-## CPU's
+## CPUs
 
 Set up the CPU's with how many cores/threads you want, mine is currently set up:
 
