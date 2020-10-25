@@ -17,12 +17,12 @@ I've used Kholia's repository which utilised the newer OpenCore firmware method 
 4. [Find your Ethernet MAC address](#Find-your-Ethernet-MAC-address)
 5. [Modify the config.plist](#Modify-the-configplist)
 6. [Issues](#Issues)
-  * [Timezone](#Timezone)
-  * [Mouse settings](#Mouse-settings)
   * [HDMI 2.0](#HDMI-20)
     - [Changing the framebuffer](#Changing-the-framebuffer)
   * [Weird UI behaviour](#Weird-UI-behaviour)
 7. [Screenshots](#Screenshots)
+  * [Timezone](#Timezone)
+  * [Mouse settings](#Mouse-settings)
 
 ## [Hardware](#hardware)
 
@@ -228,20 +228,6 @@ Make a note of it as the tool clears the screen. Place the data into your config
 
 ## Issues
 
-### Timezone
-
-This defaulted to the US instead of my locality, this can be changed using the clock in the menu bar.
-
-![Timezone Settings](./screenshots/catalina/settings-timezone.png)
-
-### Mouse settings
-
-Apple seems to think that their mouse scrolling is natural, well, it's not, here's how to fix it.
-
-![Mouse Settings](./screenshots/catalina/settings-mouse.png)
-
-Their default tracking speed is way too slow, I cannot imagine using that on a full 4K screen, it'd take ages to get from one side to the other!
-
 ### HDMI 2.0
 
 On booting the machine the OS will set you up with an accelerated framebuffer, it's the default one ```AMDFrameBuffer``` which is generated on the fly. I cannot get HDMI 2.0 to work to get HiDPI screen resolutions and the Display settings doesn't show the HiDPI settings, only the scalable ones.
@@ -358,3 +344,18 @@ Domain Catalina successfully woken up
 ## Screenshots
 
 ![Catalina Desktop](./screenshots/catalina/catalina-desktop.png)
+
+### Timezone
+
+This defaulted to the US instead of my locality, this can be changed using the clock in the menu bar.
+
+![Timezone Settings](./screenshots/catalina/settings-timezone.png)
+
+### Mouse settings
+
+Apple seems to think that their mouse scrolling is natural, well, it's not, here's how to fix it.
+
+![Mouse Settings](./screenshots/catalina/settings-mouse.png)
+
+Their default tracking speed is way too slow, I cannot imagine using that on a full 4K screen, it'd take ages to get from one side to the other!
+
