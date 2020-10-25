@@ -356,25 +356,11 @@ Turns out, this is true after a reboot. Maybe it's because I removed the default
 
 I have a USB ethernet dongle which is connected to a USB PCI-e card, this shows up as ```en0``` but not as ```built-in```, it needs to be built-in for this to work.
 
-I've tried [two](https://github.com/jsassu20/OpenCore-HotPatching-Guide/tree/master/16-Pseudo-Ethernet%20and%20Reset%20Ethernet%20BSD%20Name) [separate](https://bitbucket.org/RehabMan/os-x-null-ethernet/downloads/) ```NullEthernet.kexts``` which cause the kernel to panic with the following:
+As can be seen by the next screenshot the built in checkbox is not ticked.
 
-```
-halting on critical error
-```
+![Fresco FL1100 as en1](./screenshots/catalina/usb-fixed-fl1100.png)
 
-The debug logs aren't helping here either, it's not even loading the kext.
-
-```
-24:385 00:081 OC: Prelinked injection Lilu.kext (Patch engine) - Success
-24:449 00:064 OC: Prelinked injection WhateverGreen.kext (Video patches) - Success
-24:513 00:063 OC: Prelinked injection AppleALC.kext (Audio patches) - Success
-24:556 00:043 OC: Prelinked injection AGPMInjector.kext () - Success
-24:593 00:037 OC: Prelinked injection USBPorts.kext () - Success
-24:631 00:038 OC: Prelinked injection MCEReporterDisabler.kext (AppleMCEReporter disabler) - Success
-24:671 00:039 OCAK: Plist-only kext has CFBundleExecutable key
-```
-
-Ideally, using ```DeviceProperties``` to add this property in for the USB device would be ideal, but I cannot work out how you're supposed to do it.
+Ideally, using ```DeviceProperties``` to add this property in for the USB device would be ideal, but unfortunately, this is only available to PCI devices, so I nee another way.
 
 The fix isn't actually so bad, the information is documented [here](https://dortania.github.io/OpenCore-Post-Install/universal/iservices.html#fixing-en0) about deleting the networks and preferences. You need to download the ```NullEthernet.kext``` which is also in that link from Rehabman.
 
@@ -439,10 +425,6 @@ The add the following to your ```config.plist```:
 This will then give you 3 network interfaces as shown here. The yellow ethernet connector is the fake ```en0``` device and the green one is the real USB ```en1``` device.
 
 ![Network Settings](./screenshots/catalina/settings-networks.png)
-
-As can be seen by the next screenshot the built in checkbox is not ticked.
-
-![Fresco FL1100 as en1](./screenshots/catalina/usb-fixed-fl1100.png)
 
 So, ```en0``` shoudl be now classed as built into the machine like on a Mac and ```en1``` isn't anymore.
 
