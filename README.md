@@ -222,6 +222,10 @@ Make a note of it as the tool clears the screen. Place the data into your config
 
 ## Issues
 
+### Timezone
+
+This defaulted to the US instead of my locality, this can be changed using the clock in the menu bar.
+
 ### HDMI 2.0
 
 On booting the machine the OS will set you up with an accelerated framebuffer, it's the default one ```AMDFrameBuffer``` which is generated on the fly. I cannot get HDMI 2.0 to work to get HiDPI screen resolutions and the Display settings doesn't show the HiDPI settings, only the scalable ones.
