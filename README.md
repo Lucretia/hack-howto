@@ -43,7 +43,7 @@ $ git clone https://github.com/corpnewt/ProperTree
 $ git clone https://github.com/kholia/OSX-KVM
 $ cd OSX-KVM
 $ ./fetch-macOS.py
-./fetch-macOS.py # Removed the fecting stuff from this log
+./fetch-macOS.py # Removed the feching stuff from this log
  #    ProductID    Version   Post Date  Title
  1    061-26578    10.14.5  2019-10-14  macOS Mojave
  2    061-26589    10.14.6  2019-10-14  macOS Mojave
