@@ -3,6 +3,8 @@ README.md
 
 This is my guide on how to set up a Hackintosh on Virt-Manager.
 
+I've used Kholia's repository which utilised the newer OpenCore firmware method over the old Clover method.
+
 ## Hardware
 
 My machine is quite old, but it still works.
