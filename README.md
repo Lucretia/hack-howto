@@ -17,6 +17,9 @@ I've used Kholia's repository which utilised the newer OpenCore firmware method 
 4. [Find your Ethernet MAC address](#Find-your-Ethernet-MAC-address)
 5. [Modify the config.plist](#Modify-the-configplist)
 6. [Issues](#Issues)
+  * [Timezone](#Timezone)
+  * [HDMI 2.0](#HDMI-20)
+    - [Changing the framebuffer](#Changing-the-framebuffer)
 
 ## [Hardware](#hardware)
 
