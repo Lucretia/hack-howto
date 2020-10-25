@@ -331,6 +331,19 @@ And then setting the ```enable-hdmi2``` device property.
 
 I just booted into the VM and when opening item lists in in the IORegistryExplorer they would close automatically, I then went back to Linux to ssh into the machine and it locked up. Went back in and whole machine had locked up. Possibly a USB power issue caused by the Orinoco framebuffer?
 
+### Suspended VM
+
+You may leave your VM and come back to it later only to find you've got a black screen and mouse or keyboard won't wake it up.
+
+![VM Suspended](./screenshots/virtmanager/vm_suspended.png)
+
+To wake it up, do the following:
+
+```
+$ virsh --connect qemu:///system dompmwakeup --domain Catalina
+Domain Catalina successfully woken up
+```
+
 ## Screenshots
 
 ![Catalina Desktop](./screenshots/catalina/catalina-desktop.png)
