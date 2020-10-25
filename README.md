@@ -23,6 +23,7 @@ I've used Kholia's repository which utilised the newer OpenCore firmware method 
 7. [Screenshots](#Screenshots)
   * [Timezone](#Timezone)
   * [Mouse settings](#Mouse-settings)
+  * [GeekBench 5](GeekBench-5)
 
 ## [Hardware](#hardware)
 
@@ -370,3 +371,15 @@ Then copy over your SSH key.
 ```
 $ ssh-copy-id $(whoami)@192.168.0.14  # Edit the IP address.
 ```
+
+### GeekBench 5
+
+![GeekBench 5](./screenshots/catalina/geekbench5.png)
+
+## References
+
+* [Kholia](https://github.com/kholia/OSX-KVM)
+* [OpenCore Installation Guide](https://dortania.github.io/OpenCore-Install-Guide)
+* [IORegistryExplorer](https://github.com/vulgo/IORegistryExplorer)
+* [VDADecoderChcker](https://dortania.github.io/OpenCore-Post-Install/universal/drm.html#testing-hardware-acceleration-and-decoding)
+* [EveryMac.com](https://everymac.com)
