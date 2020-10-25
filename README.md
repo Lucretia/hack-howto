@@ -13,6 +13,7 @@ My machine is quite old, but it still works.
 * Radeon RX580 GPU.
 * Fresco FL1100 based USB PCI-e card.
 * RTL8153 USB Ethernet attached to USB card.
+* LG UK850-W 4K HDR monitor.
 
 ## Download the required software
 
