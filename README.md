@@ -7,15 +7,16 @@ I've used Kholia's repository which utilised the newer OpenCore firmware method 
 
 1. [Hardware](#hardware)
 2. [Download the required software](#Download-the-required-software)
+  * [ProperTree](#ProperTree)
 3. [Create the virtual machine](#Create-the-virtual-machine)
-4. [CPUs](#CPUs)
-5. [Memory](#Memory)
-6. [Storage](#Storage)
-7. [Add the physical hardware](#Add-the-physical-hardware)
-8. [Remove HDA audio](#Remove-HDA-audio)
-9. [Find your Ethernet MAC address](#Find-your-Ethernet-MAC-address)
-10. [Modify the config.plist](#Modify-the-configplist)
-11. [Issues](#Issues)
+  * [CPUs](#CPUs)
+  * [Memory](#Memory)
+  * [Storage](#Storage)
+  * [Add the physical hardware](#Add-the-physical-hardware)
+  * [Remove HDA audio](#Remove-HDA-audio)
+4. [Find your Ethernet MAC address](#Find-your-Ethernet-MAC-address)
+5. [Modify the config.plist](#Modify-the-configplist)
+6. [Issues](#Issues)
 
 ## [Hardware](#hardware)
 
@@ -69,7 +70,7 @@ $ xrdb -load /dev/null
 
 Import the Virt-Manager XML template as per the Kholia instructions.
 
-## CPUs
+### CPUs
 
 Set up the CPU's with how many cores/threads you want, mine is currently set up:
 
@@ -84,11 +85,11 @@ Set up the CPU's with how many cores/threads you want, mine is currently set up:
 
 With a higher spec machine, i.e. Ryzen Threadripper, you could increase this to match what a real Mac would have.
 
-## Memory
+### Memory
 
 I have set up my memory requirements to 8192 MiB (8GB), if you have more, add it.
 
-## Storage
+### Storage
 
 Add the ```BaseSystem.img``` as a **USB** drive, not a hard drive, otherwise you cannot boot the VM into the installer. Kholia does not mention this anywhere.
 
@@ -123,7 +124,7 @@ You really want the base OS SATA drive stored on an SSD drive. I have an SSD dri
 
 I've added an extra data drive which I can mount inside Linux if I need to, this can be VFAT or HFS+, Linux does not have an APFS driver yet.
 
-## Add the physical hardware
+### Add the physical hardware
 
 I have 3 PCI devices I want to pass through, you need to make sure your devices are set up into separate IOMMU goups.
 
@@ -157,7 +158,7 @@ I have 3 PCI devices I want to pass through, you need to make sure your devices 
 </hostdev>
 ```
 
-## Remove HDA audio
+### Remove HDA audio
 
 MacOS doesn't seem to like the HDA device that QEMU provides, I've tried all of the hardware provided and none work. Apparently, if you do get it working it's not the best anyway. I ended up just using HDMI audio, but this is no good if you don't have speakers on your monitor.
 
@@ -221,13 +222,15 @@ Make a note of it as the tool clears the screen. Place the data into your config
 
 ## Issues
 
+### HDMI 2.0
+
 On booting the machine the OS will set you up with an accelerated framebuffer, it's the default one ```AMDFrameBuffer``` which is generated on the fly. I cannot get HDMI 2.0 to work to get HiDPI screen resolutions and the Display settings doesn't show the HiDPI settings, only the scalable ones.
 
 ![HiDPI Settings](https://www.eizoglobal.com/support/compatibility/dpi_scaling_settings_mac_os_x/image01.jpg)
 
 ![Normal Settings](screenshots/catalina/settings-displays.png)
 
-### Changing the framebuffer
+#### Changing the framebuffer
 
 I even changed the framebuffer to ```Orinoco``` which used to be selected by Mojave, the UI does feel faster, but there seems to be some weird glitches when I run my Particle Designer and click in the OpenGL window to place the emitter, but it is old, so I'll try the demo of the newest release to see.
 
