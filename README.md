@@ -43,6 +43,7 @@ $ cd hack-howto
 $ git clone https://github.com/corpnewt/GenSMBIOS
 $ git clone https://github.com/corpnewt/ProperTree
 $ git clone https://github.com/kholia/OSX-KVM
+$ wget https://bitbucket.org/RehabMan/os-x-null-ethernet/downloads/RehabMan-NullEthernet-2016-1220.zip
 $ cd OSX-KVM
 $ ./fetch-macOS.py
 ./fetch-macOS.py # Removed the feching stuff from this log
@@ -347,6 +348,105 @@ Domain Catalina successfully woken up
 Well, my VM suspended and I wanted to test passing through an iPhone via the QEM interface - not the USB PCI-e card, but the options were greyed out. So, reboot time and it's not the fastest boot with OC, once it gets to the picker, it's pretty fast.
 
 Turns out, this is true after a reboot. Maybe it's because I removed the default display devices?
+
+### No access to iServices
+
+I have a USB ethernet dongle which is connected to a USB PCI-e card, this shows up as ```en0``` but not as ```built-in```, it needs to be built-in for this to work.
+
+I've tried [two](https://github.com/jsassu20/OpenCore-HotPatching-Guide/tree/master/16-Pseudo-Ethernet%20and%20Reset%20Ethernet%20BSD%20Name) [separate](https://bitbucket.org/RehabMan/os-x-null-ethernet/downloads/) ```NullEthernet.kexts``` which cause the kernel to panic with the following:
+
+```
+halting on critical error
+```
+
+The debug logs aren't helping here either, it's not even loading the kext.
+
+```
+24:385 00:081 OC: Prelinked injection Lilu.kext (Patch engine) - Success
+24:449 00:064 OC: Prelinked injection WhateverGreen.kext (Video patches) - Success
+24:513 00:063 OC: Prelinked injection AppleALC.kext (Audio patches) - Success
+24:556 00:043 OC: Prelinked injection AGPMInjector.kext () - Success
+24:593 00:037 OC: Prelinked injection USBPorts.kext () - Success
+24:631 00:038 OC: Prelinked injection MCEReporterDisabler.kext (AppleMCEReporter disabler) - Success
+24:671 00:039 OCAK: Plist-only kext has CFBundleExecutable key
+```
+
+Ideally, using ```DeviceProperties``` to add this property in for the USB device would be ideal, but I cannot work out how you're supposed to do it.
+
+The fix isn't actually so bad, the information is documented [here](https://dortania.github.io/OpenCore-Post-Install/universal/iservices.html#fixing-en0) about deleting the networks and preferences. You need to download the ```NullEthernet.kext``` which is also in that link from Rehabman.
+
+```
+$ pushd mnt/opencore/EFI/OC/Kexts
+$ sudo unzip  ../../../../../RehabMan-NullEthernet-2016-1220.zip
+$ sudo rm -rf Debug NullEthernetInjector.kext patch.txt __MACOSX
+$ sudo mv ssdt-rmne.aml ../ACPI/
+$ sudo mv Release/NullEthernet.kext .
+$ sudo rmdir Release
+$ popd
+```
+
+The add the following to your ```config.plist```:
+
+```
+        <key>ACPI</key>
+        <dict>
+                <key>Add</key>
+                <array>
+                        <!-- Insert this section -->
+                        <dict>
+                                <key>Comment</key>
+                                <string>Fake en0 Ethernet Interface</string>
+                                <key>Enabled</key>
+                                <true/>
+                                <key>Path</key>
+                                <string>ssdt-rmne.aml</string>
+                        </dict>
+                        <!-- End -->
+                </array>
+        </dict>
+
+        <key>Kernel</key>
+        <dict>
+                <key>Add</key>
+                <array>
+                        <!-- Insert this section -->
+                        <dict>
+                                <key>Arch</key>
+                                <string>x86_64</string>
+                                <key>BundlePath</key>
+                                <string>NullEthernet.kext</string>
+                                <key>Comment</key>
+                                <string>Fake en0 Ethernet Enabler</string>
+                                <key>Enabled</key>
+                                <true/>
+                                <key>ExecutablePath</key>
+                                <string>Contents/MacOS/NullEthernet</string>
+                                <key>MaxKernel</key>
+                                <string></string>
+                                <key>MinKernel</key>
+                                <string></string>
+                                <key>PlistPath</key>
+                                <string>Contents/Info.plist</string>
+                        </dict>
+                        <!-- End -->
+                </array>
+        </dict>
+```
+
+This will then give you 3 network interfaces as shown here. The yellow ethernet connector is the fake ```en0``` device and the green one is the real USB ```en1``` device.
+
+![Network Settings](./screenshots/catalina/settings-networks.png)
+
+As can be seen by the next screenshot the built in checkbox is not ticked.
+
+![Fresco FL1100 as en1](./screenshots/catalina/usb-fixed-fl1100.png)
+
+So, ```en0``` shoudl be now classed as built into the machine like on a Mac and ```en1``` isn't anymore.
+
+![en0](./screenshots/catalina/usb-fixed-en0.png)
+![en1](./screenshots/catalina/usb-fixed-en1.png)
+
+With this set up I was able to use iMessage, FaceTime and download Xcode from the App Store.
 
 ## Screenshots
 
