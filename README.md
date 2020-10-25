@@ -378,6 +378,12 @@ Then copy over your SSH key.
 $ ssh-copy-id $(whoami)@192.168.0.14  # Edit the IP address.
 ```
 
+### Attaching iPhone
+
+Attached my iPhone to the VM via the USB PCI-e card, seems to be ok.
+
+![iPhone 8 Plus](./screenshots/catalina/iphone8.png)
+
 ### GeekBench 5
 
 ![GeekBench 5](./screenshots/catalina/geekbench5.png)
