@@ -215,3 +215,90 @@ On booting the machine the OS will set you up with an accelerated framebuffer, i
 
 ![Normal Settings](screenshots/catalina/settings-displays.png)
 
+### Changing the framebuffer
+
+I even changed the framebuffer to ```Orinoco``` which used to be selected by Mojave, the UI does feel faster, but there seems to be some weird glitches when I run my Particle Designer and click in the OpenGL window to place the emitter, but it is old, so I'll try the demo of the newest release to see.
+
+In your config.plist, under ```DeviceProperties > Add```, add the following which was taken from [this post](https://forums.macrumors.com/threads/tired-of-low-geekbench-scores-use-radeonboost.2231366/post-28735099); the ```shikigva``` option there is not required.
+
+
+```
+        <key>DeviceProperties</key>
+        <dict>
+                <key>Add</key>
+                <dict>
+                        <!-- Insert this section -->
+                        <key>PciRoot(0x1)/Pci(0x1,0x0)/Pci(0x0,0x0)</key>
+                        <dict>
+                                <key>@0,name</key>
+                                <data>QVRZLE9yaW5vY28=</data>
+                                <key>ATY,EFIVersion</key>
+                                <data>MDEuMDEuMTgz</data>
+                                <key>CFG,CFG_FB_LIMIT</key>
+                                <data>BQ==</data>
+                                <key>CFG,CFG_PTPL2_TBL</key>
+                                <data>ggAAAHwAAAB2AAAAcAAAAGoAAABkAAAAXgAAAFgAAABSAAAATAAAAEYAAABAAAAAOgAAADQAAAAuAAAAKAAAAA==</data>
+                                <key>PP,PP_PowerPlayEnabled</key>
+                                <data>AQAAAA==</data>
+                                <key>PP,PP_WorkLoadPolicyMask</key>
+                                <data>CA==</data>
+                                <key>agdpmod</key>
+                                <data>cGlrZXJhAA==</data>
+                                <key>model</key>
+                                <data>QU1EIFJhZGVvbiBSWCA1ODA=</data>
+                                <key>rebuild-device-tree</key>
+                                <data>AA==</data>
+                        </dict>
+                        <!-- End -->
+                </dict>
+                <key>Delete</key>
+                <dict>
+                        <!-- Insert this section -->
+                        <key>PciRoot(0x1)/Pci(0x1,0x0)/Pci(0x0,0x0)</key>
+                        <array>
+                                <string>ATY,EFIVersion</string>
+                        </array>
+                        <!-- End -->
+                </dict>
+        </dict>
+```
+
+Those PCI addresses are taken from within the Mac, if you set up your GPU as PCI 01:00.0 as I did, these will work.
+
+Back to HDMI, I tried to enable it using ```WhateverGreen.kext```, which needs to add ```-cdfon```  to the ```boot-args``` parameter.
+
+```
+        <key>NVRAM</key>
+        <dict>
+                <key>Add</key>
+                <dict>
+                        <key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
+                        <dict>
+                                <key>boot-args</key>
+                                <!-- Insert this section -->
+                                <string>-v keepsyms=1 -cdfon</string>
+                                <!-- End -->
+                        </dict>
+                </dict>
+        </dict>
+```
+
+And then setting the ```enable-hdmi2``` device property.
+
+```
+        <key>DeviceProperties</key>
+        <dict>
+                <key>Add</key>
+                <dict>
+                        <key>PciRoot(0x1)/Pci(0x1,0x0)/Pci(0x0,0x0)</key>
+                        <dict>
+                                <!-- Insert this section -->
+                                <key>enable-hdmi20</key>
+                                <data>AQ==</data>
+                                <!-- End -->
+                        </dict>
+                </dict>
+        </dict>
+```
+
+Neither of these worked for me.
