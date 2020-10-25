@@ -18,6 +18,7 @@ I've used Kholia's repository which utilised the newer OpenCore firmware method 
 5. [Modify the config.plist](#Modify-the-configplist)
 6. [Issues](#Issues)
   * [Timezone](#Timezone)
+  * [Mouse settings](#Mouse-settings)
   * [HDMI 2.0](#HDMI-20)
     - [Changing the framebuffer](#Changing-the-framebuffer)
   * [Weird UI behaviour](#Weird-UI-behaviour)
@@ -232,6 +233,14 @@ Make a note of it as the tool clears the screen. Place the data into your config
 This defaulted to the US instead of my locality, this can be changed using the clock in the menu bar.
 
 ![Timezone Settings](./screenshots/catalina/settings-timezone.png)
+
+### Mouse settings
+
+Apple seems to think that their mouse scrolling is natural, well, it's not, here's how to fix it.
+
+![Mouse Settings](./screenshots/catalina/settings-mouse.png)
+
+Their default tracking speed is way too slow, I cannot imagine using that on a full 4K screen, it'd take ages to get from one side to the other!
 
 ### HDMI 2.0
 
