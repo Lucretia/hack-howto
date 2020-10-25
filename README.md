@@ -359,3 +359,14 @@ Apple seems to think that their mouse scrolling is natural, well, it's not, here
 
 Their default tracking speed is way too slow, I cannot imagine using that on a full 4K screen, it'd take ages to get from one side to the other!
 
+### Enable remote login
+
+You will likely want to remote login to your Mac, so you need to enable it in the settings.
+
+![Sharing Settings](./screenshots/catalina/settings-sharing.png)
+
+Then copy over your SSH key.
+
+```
+$ ssh-copy-id $(whoami)@192.168.0.14  # Edit the IP address.
+```
