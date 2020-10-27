@@ -20,8 +20,8 @@ I've used Kholia's repository which utilised the newer OpenCore firmware method 
   * [HDMI 2.0](#HDMI-20)
     - [Changing the framebuffer](#Changing-the-framebuffer)
   * [Weird UI behaviour](#Weird-UI-behaviour)
-  * [Suspended VM](#Suspended-VM)
-  * [No USB redirect after wakeup](#No-USB-redirect-after-wakeup)
+  * [Suspension Issues](#Suspension-Issues)
+    - [No USB redirect after wakeup](#No-USB-redirect-after-wakeup)
   * [No access to iServices](#No-access-to-iServices)
 7. [Screenshots](#Screenshots)
   * [Timezone](#Timezone)
@@ -333,7 +333,7 @@ And then setting the ```enable-hdmi2``` device property.
 
 I just booted into the VM and when opening item lists in in the IORegistryExplorer they would close automatically, I then went back to Linux to ssh into the machine and it locked up. Went back in and whole machine had locked up. Possibly a USB power issue caused by the Orinoco framebuffer?
 
-### Suspended VM
+### Suspension Issues
 
 You may leave your VM and come back to it later only to find you've got a black screen and mouse or keyboard won't wake it up.
 
@@ -346,11 +346,15 @@ $ virsh --connect qemu:///system dompmwakeup --domain Catalina
 Domain Catalina successfully woken up
 ```
 
-### No USB redirect after wakeup
+#### No USB redirect after wakeup
 
 Well, my VM suspended and I wanted to test passing through an iPhone via the QEM interface - not the USB PCI-e card, but the options were greyed out. So, reboot time and it's not the fastest boot with OC, once it gets to the picker, it's pretty fast.
 
 Turns out, this is true after a reboot. Maybe it's because I removed the default display devices?
+
+#### Strange lines across the display after wakeup
+
+I woke up my VM yesterday to find there were weird lines all over the display, I don't have a screenshot. Don't know why. Needed a reboot.
 
 ### No access to iServices
 
